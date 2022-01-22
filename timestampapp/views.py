@@ -29,4 +29,4 @@ def uuid_timestamp_view(request):
     ordered_dict = OrderedDict(values_list)
     
     # return Json response.
-    return JsonResponse(ordered_dict)
+    return JsonResponse(ordered_dict, json_dumps_params={"indent": 4})
