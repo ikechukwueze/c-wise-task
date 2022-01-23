@@ -34,13 +34,14 @@ class TestUuidTimestampView(TestCase):
     def test_get_response_is_json(self):
         self.assertEqual(type(self.response), JsonResponse)
     
-    def test_failed_post_request(self):
-        post_response = self.client.post("/", data=self.post_data)
-        self.assertEqual(post_response.status_code, 405)
-        
     def test_json_response_data_size(self):
         # this tests if the response length is same as database obj length
         resp = self.response.content
         response_length = len(json.loads(resp))
         self.assertEqual(UuidTimeStamp.objects.count(), response_length)
+    
+    def test_failed_post_request(self):
+        post_response = self.client.post("/", data=self.post_data)
+        self.assertEqual(post_response.status_code, 405)
+    
         
